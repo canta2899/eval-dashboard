@@ -41,7 +41,7 @@ app.post("/chat", async (req, res) => {
   }
 
   try {
-    // Map simple {role, content} objects to LangChain message classes
+    // map simple {role, content} objects
     const langchainMessages = (messages || []).map((m: any) => {
       if (m.role === "user") return new HumanMessage(m.content);
       if (m.role === "agent" || m.role === "ai")
@@ -58,8 +58,7 @@ app.post("/chat", async (req, res) => {
       },
     );
 
-    // Convert LangChain messages back to simple {role, content} for the frontend
-    // We filter out tool messages here to only send back the dialogue history
+    // convert back to {role, content}
     const resultMessages = response.messages
       .map((m: any) => {
         const type = m._getType();

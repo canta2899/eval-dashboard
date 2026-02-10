@@ -12,5 +12,3 @@ export interface TraceStep {
   error?: string;
   latency: number;
 }
-
-export const TYPES_LOADED = true;
